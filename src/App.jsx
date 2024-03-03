@@ -1,38 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import ImageArray from './Covers';
 
+import './pages/App.css'
+import ImageArray from './pages/Covers';
+import { Route, Routes, Navigate} from 'react-router-dom';
+import Login from "./pages/Login";
+import Results from "./pages/Results";
 
 function App() {
-  const [count, setCount] = useState(0)
-
-function Clicked(){
-  console.log("hello");
-}
-var url = window.location.href
-  return (
-    <>
+    return (
       <div>
-
-      <ImageArray />
-      
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <a href="https://756d-2600-387-15-12-00-7.ngrok-free.app/login">Login with spotify <button onClick={Clicked}> Click
-        </button></a>
-      console.log(window.location.pathname);
-      console.log(window.location.href);
-      console.log('hi');
-      </div>
-      <p className="read-the-docs">
-        Music nutrition label
-      </p>
+        <Routes>
+          <Route path="/" element={<Login />}/>
+          <Route path="/results" element={<Results />}/>
+          <Route path="*" element={<Navigate to="/" replace  />}/>
+        </Routes>
   
-    </>
-  );
-};
+      </div>
+    )
+    }
 
-export default App
+export default App;
