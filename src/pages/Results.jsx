@@ -1,8 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react'
-
-// import './pages/App.css'
-// import ImageArray from './pages/Covers';
+import './nutrition_table.css'; // Import the CSS file
 
 function Clicked() {
   console.log("hello");
@@ -12,10 +10,6 @@ function images(items){
   return [items.images, items.name].join(" ");
 }
 
-// function timeConversion({track.duration_ms}){
-//   minutes = Math.floor(({track.duration_ms}/60000)),
-//   seconds = Math.floor(({track.duration_ms}/1000) % 60);
-// }
 
 function Results() {
   const [token, setToken] = useState();
@@ -60,36 +54,64 @@ function Results() {
 
   }, [token]);
 
+const NutritionFacts = () => {
+  return (
+    <div id="nutritionTable">
+    <section className="performance-facts">
+      <header className="performance-facts__header">
+        <h1 className="performance-facts__title">Nutrition Facts</h1>
+        <p>Serving of <strong>{me.display_name}</strong></p>
+        <p>Serving country <strong>{me.country}</strong></p>
+      </header>
+      <table className="performance-facts__table">
+        <thead>
+          <tr>
+            <th colSpan="3" className="small-info">
+              <b>Amount Per Serving</b>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+        {data && data.map((track, index) => (
+            <tr key={index}>
+              <td>{index + 1}</td>
+              
+              <td>{track.album.name} - {track.name} </td>
+              <td>
+                {(() => {
+                  const minutes = Math.floor(track.duration_ms / 60000);
+                  const seconds = Math.floor((track.duration_ms / 1000) % 60);
+                  return (
+                    <span className="trackDuration">{minutes}:{seconds < 10 ? '0' : ''}{seconds}</span>
+                  );
+                })()}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <table className="performance-facts__table--grid">
+        <tbody>
+        
+        </tbody>
+        
+      </table>
+      
+      <p className="small-info">* Daily Music Values are based on personal preference. Your daily values may be higher or lower depending on your music needs.</p>
+    </section></div>
+  );
+}
 
   return (
     <div>
-      <p>testing</p>
-      {/* {token} TOKENNNN */}
-      console.log(userName);
 
-      {/* {me && JSON.stringify(me)}
-      {data && JSON.stringify(data)} */}
-      {/* {data.items && JSON.stringify(data.items)} */}
-      {/* {items && JSON.stringify(items)} */}
-
-      {/* {me && <p>User ID: {me.id}</p>} */}
-      
       {data && data.map((track, index) => (
         <div key={index}>
-          <p>Album: {track.album.name}</p>
 
-          <p>Title: {track.name}</p>
-          <p>Artist: {track.artists[0].name}</p>
-          
-          {(() => {
-          const minutes = Math.floor(track.duration_ms / 60000);
-          const seconds = Math.floor((track.duration_ms / 1000) % 60);
-          return (
-            <p>Duration: {minutes}:{seconds < 10 ? '0' : ''}{seconds}</p>
-          );
-          })()}
 
           <img src={track.album.images[0].url} alt="Track Album" />
+          {/* Display the NutritionFacts component */}
+          <NutritionFacts username="Your Username" country="Your Country" />
           
     </div>))}
     </div>

@@ -6,6 +6,8 @@ import App from './App.jsx';
 import Results from './pages/Results.jsx';
 import {BrowserRouter as Router} from "react-router-dom";
 
+
+
 import './pages/index.css'
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
