@@ -76,19 +76,21 @@ function Results() {
       
       {data && data.map((track, index) => (
         <div key={index}>
-          <p>Track Name: {track.name}</p>
+          <p>Album: {track.album.name}</p>
 
+          <p>Title: {track.name}</p>
+          <p>Artist: {track.artists[0].name}</p>
+          
           {(() => {
           const minutes = Math.floor(track.duration_ms / 60000);
           const seconds = Math.floor((track.duration_ms / 1000) % 60);
           return (
-            <p>Track Duration: {minutes}:{seconds < 10 ? '0' : ''}{seconds}</p>
+            <p>Duration: {minutes}:{seconds < 10 ? '0' : ''}{seconds}</p>
           );
           })()}
-          
-          <p>Track Album: {track.album.name}</p>
+
           <img src={track.album.images[0].url} alt="Track Album" />
-          <p>Track Artist: {track.artists[0].name}</p>
+          
     </div>))}
     </div>
   );
