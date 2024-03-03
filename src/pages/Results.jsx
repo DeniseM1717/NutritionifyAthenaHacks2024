@@ -8,12 +8,21 @@ function Clicked() {
   console.log("hello");
 }
 
+function images(items){
+  return [items.images, items.name].join(" ");
+}
+
+// function timeConversion({track.duration_ms}){
+//   minutes = Math.floor(({track.duration_ms}/60000)),
+//   seconds = Math.floor(({track.duration_ms}/1000) % 60);
+// }
+
 function Results() {
   const [token, setToken] = useState();
   const [me, setMe] = useState();
 
   const [data, setData] = useState();
-  const [items, setItems] = useState();
+  // const [items, setItems] = useState();
   // get access token from url and use it to get user info
   useEffect(() => {
     const urlSearchString = window.location.search;
@@ -45,8 +54,8 @@ function Results() {
     fetch("https://api.spotify.com/v1/me/top/tracks?offset=0&limit=10", {
       headers: { Authorization: 'Bearer ' + token }
     }).then(res => res.json()).then(response => {
-      setData(response);
-      setItems(response);
+      setData(response.items);
+      // setItems(response.items);
     })
 
   }, [token]);
@@ -54,26 +63,33 @@ function Results() {
 
   return (
     <div>
-      <p>params</p>
-      {token} TOKENNNN
+      <p>testing</p>
+      {/* {token} TOKENNNN */}
       console.log(userName);
 
-      {/* {me && JSON.stringify(me)} */}
-      {/* {data && JSON.stringify(data)} */}
-      {items && JSON.stringify(items)}
+      {/* {me && JSON.stringify(me)}
+      {data && JSON.stringify(data)} */}
+      {/* {data.items && JSON.stringify(data.items)} */}
+      {/* {items && JSON.stringify(items)} */}
 
-      {/* images */}
+      {/* {me && <p>User ID: {me.id}</p>} */}
       
-      {items.map((image, index)=>(
-        <img>
-        key={index}
-        src={image.url}
-        alt={`Image ${index + 1}`}
-        height={image.height}
-        width={image.width}
-        </img>
-      ))}
+      {data && data.map((track, index) => (
+        <div key={index}>
+          <p>Track Name: {track.name}</p>
 
+          {(() => {
+          const minutes = Math.floor(track.duration_ms / 60000);
+          const seconds = Math.floor((track.duration_ms / 1000) % 60);
+          return (
+            <p>Track Duration: {minutes}:{seconds < 10 ? '0' : ''}{seconds}</p>
+          );
+          })()}
+          
+          <p>Track Album: {track.album.name}</p>
+          <img src={track.album.images[0].url} alt="Track Album" />
+          <p>Track Artist: {track.artists[0].name}</p>
+    </div>))}
     </div>
   );
 }
