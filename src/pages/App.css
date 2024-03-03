@@ -8,8 +8,19 @@ body {
   background-color: white;
 
 }
+h1{
+
+}
 #main {
   width:80
+}
+.btn-green{
+  background-color: #191414;
+
+}
+.btn-green a{
+  color:white;
+  font-size:1.2em;
 }
 .covers img {
   width: 20%;

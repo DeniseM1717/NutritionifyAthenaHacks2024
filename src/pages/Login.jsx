@@ -1,4 +1,4 @@
-
+import './App.css'
 
 function Login() {
 
@@ -20,8 +20,8 @@ function Login() {
       </div>
       <h1>Nutritionify</h1>
       <div className="card">
-        <a href="https://756d-2600-387-15-12-00-7.ngrok-free.app/login">Login with spotify Click
-        </a>
+        <button className="btn-green"><a href="https://756d-2600-387-15-12-00-7.ngrok-free.app/login">Login with spotify
+        </a></button>
 
       </div>
       <p className="read-the-docs">
