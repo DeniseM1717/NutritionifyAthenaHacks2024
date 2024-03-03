@@ -19,9 +19,7 @@
   }
   .trackDuration {
     text-align: right;
-
-
-  }
+  } 
   .performance-facts {
     border: 1px solid black;
     margin: 0 auto;
@@ -34,9 +32,13 @@
   .small-info {
     border-top: 10px solid black;
   }
-  .album-covers {
-    width:300px;
-
+  .album-cover {
+  width:100%;
+  padding:0;
+  margin:0 auto;
+  z-index:0;
+  position:absolute;
+  left:0;
   }
   .performance-facts__title {
     font-weight: bold;
@@ -50,6 +52,12 @@
     p {
       margin: 0;
     }
+  }
+  #nutritionTable {
+    z-index:1;
+    position:relative;
+
+    background-color: rgb(255,255,255,0.8);
   }
   .performance-facts__table {
     width: 100%;

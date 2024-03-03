@@ -60,8 +60,8 @@ const NutritionFacts = () => {
     <section className="performance-facts">
       <header className="performance-facts__header">
         <h1 className="performance-facts__title">Nutrition Facts</h1>
-        <p>Serving of <strong>{me.display_name}</strong></p>
-        <p>Serving country <strong>{me.country}</strong></p>
+        <p>Serving of <strong>{me?.display_name}</strong></p>
+        <p>Serving country <strong>{me?.country}</strong></p>
       </header>
       <table className="performance-facts__table">
         <thead>
@@ -105,15 +105,12 @@ const NutritionFacts = () => {
   return (
     <div>
 
-      {data && data.map((track, index) => (
-        <div key={index}>
 
 
-          <img src={track.album.images[0].url} alt="Track Album" />
+          <img className="album-cover" src={data?.[0].album.images[0].url} alt="Track Album" />
           {/* Display the NutritionFacts component */}
           <NutritionFacts username="Your Username" country="Your Country" />
           
-    </div>))}
     </div>
   );
 }
