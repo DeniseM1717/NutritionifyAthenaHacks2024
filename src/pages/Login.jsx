@@ -18,7 +18,7 @@ function Login() {
         {/* <ImageArray /> */}
 
       </div>
-      <h1>Vite + React</h1>
+      <h1>Nutritionify</h1>
       <div className="card">
         <a href="https://756d-2600-387-15-12-00-7.ngrok-free.app/login">Login with spotify Click
         </a>
